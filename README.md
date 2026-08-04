@@ -9,9 +9,10 @@ Teach order: **instructions → tools → HITL → skill → evals → subagent*
 - Your own Eve agent from the basic Eve setup guide (e.g. `my-agent`)
 - Node **24+**
 - `AI_GATEWAY_API_KEY` in the agent’s `.env.local`
-- `rsync` available (macOS/Linux)
 
-## Quick start
+**Windows users:** do **not** use `restore.sh`. See **[WINDOWS.md](./WINDOWS.md)** (PowerShell `restore.ps1` or manual copy).
+
+## Quick start (macOS / Linux)
 
 ```bash
 # clone next to your Eve app (recommended)
@@ -28,10 +29,13 @@ chmod +x restore.sh
 ./restore.sh S03 end            # catch up to Gate A (HITL)
 ```
 
-Or point at any agent path:
+## Quick start (Windows)
 
-```bash
-MY_AGENT_ROOT=~/Code/my-agent ./restore.sh S02 end
+```powershell
+git clone https://github.com/ismaelrumzan/skin-analyzer-code-stages.git
+cd skin-analyzer-code-stages
+.\restore.ps1 S03 end
+# or copy folders manually — see WINDOWS.md
 ```
 
 ## Stages
@@ -59,4 +63,5 @@ Approve the `? propose_regimen` prompt in the Eve TUI.
 
 - Clinic data is inlined in `lib/skin-clinic/cases.ts` (do **not** reintroduce `readFileSync` + sidecar `cases.json` — Eve’s authored-module cache will break).
 - Snapshots omit `node_modules` and `.eve`.
-- `rebuild-stages.sh` is for facilitators with a monorepo checkout; learners only need `restore.sh`.
+- `rebuild-stages.sh` is for facilitators with a monorepo checkout.
+- Learners: macOS/Linux → `restore.sh`; Windows → `restore.ps1` or [WINDOWS.md](./WINDOWS.md) manual copy.
